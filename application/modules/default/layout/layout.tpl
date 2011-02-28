@@ -11,7 +11,9 @@
 	</head>
 	
 	<body>
-		{$layout->getContent()}
+		<div style="margin:50px;">
+			{$layout->getContent()}
+		</div>
 	</body>
 
 </html>

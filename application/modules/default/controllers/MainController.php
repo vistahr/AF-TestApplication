@@ -76,4 +76,32 @@ class MainController extends \Anemo\Controller
 			return $this->forwardAndExit('default','main','main');
 	}
 	
+	
+	public function xmlTestAction() {
+		$this->getView()->assign('outxml',false);
+		
+		if($this->getRequest()->issetPost()) {
+			$xmlInput = $this->getRequest()->getPost('xml');
+			
+			$xml = \Anemo\Import::factory('Anemo\Import\Adapter\XML');
+			var_dump($xml->toArray($xmlInput));
+			$this->getView()->assign('outxml',$xml->toArray($xmlInput));
+		}
+	}
+	
+
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
