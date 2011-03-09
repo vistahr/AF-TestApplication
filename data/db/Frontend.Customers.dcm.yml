@@ -1,0 +1,32 @@
+Frontend\Customers:  
+  type: entity
+  table: customers
+  fields:
+    id:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      generator:
+        strategy: IDENTITY
+    username:
+      type: string
+      length: 30
+    password:
+      type: string
+      length: 32
+    postcode:
+      type: integer
+      unsigned: false
+      nullable: false
+    mail:
+      type: string
+      length: 40
+    activation_code:
+      type: string
+      length: 32
+    status:
+      type: integer
+    created_at:
+      type: datetime
+      nullable: false

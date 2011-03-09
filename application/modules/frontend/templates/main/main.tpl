@@ -1,4 +1,4 @@
 <div class="success">
 	<h1>AnemoFramework works fine :-)</h1>
-	{$view->forwardAndExit('default','main','nice')}
+	{$view->forwardAndExit('frontend','main','nice')}
 </div>

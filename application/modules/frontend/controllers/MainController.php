@@ -28,9 +28,9 @@ class MainController extends \Anemo\Controller
 	
 	
 	public function niceAction() {
-		return $this->forwardAndExit('default','main','login');
+		return $this->forwardAndExit('frontend','main','login');
 	}
-	
+		
 	
 	public function loginAction() {
 		$this->getView()->assign('login_fail',false);
@@ -39,7 +39,7 @@ class MainController extends \Anemo\Controller
 			
 		// wenn eingeloggt
 		if($ID->isLogged())
-			return $this->forwardAndExit('default','main','data');
+			return $this->forwardAndExit('frontend','main','data');
 		
 		
 		if($this->getRequest()->issetPost()) {
@@ -50,7 +50,7 @@ class MainController extends \Anemo\Controller
 			if($user == 'admin' && $passwd == 'admin') {
 				$ID->setSubject(new \Anemo\ACL\Subject('admin'));
 				// $ID->setUserModel(); setzen falls ein von z.B Doctrine Model des Users existiert
-				return $this->forwardAndExit('default','main','main');
+				return $this->forwardAndExit('frontend','main','main');
 			} else {
 				$this->getView()->assign('login_fail','Logindaten nicht korrekt');
 			}
@@ -67,13 +67,13 @@ class MainController extends \Anemo\Controller
 	
 	public function logoutAction() {
 		\Anemo\ID::getInstance()->logout();
-		return $this->forwardAndExit('default','main','main');
+		return $this->forwardAndExit('frontend','main','main');
 	}
 	
 	
 	public function sanskritAction() {
 		if(!\Anemo\ID::getInstance()->isLogged())
-			return $this->forwardAndExit('default','main','main');
+			return $this->forwardAndExit('frontend','main','main');
 	}
 	
 	

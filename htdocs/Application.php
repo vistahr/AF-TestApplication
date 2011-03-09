@@ -55,41 +55,38 @@ class Application extends Anemo\Application {
 	}	
 	
 	
-	public function initOrm() {	
-		$doctrineClassLoader = new Doctrine\Common\ClassLoader('Doctrine');
-		$doctrineClassLoader->register();
-		
-		$entitiesClassLoader = new Doctrine\Common\ClassLoader('Models', ROOT . 'application/library/Models');
-		$entitiesClassLoader->register();
-		
-		$proxiesClassLoader = new Doctrine\Common\ClassLoader('Proxies', ROOT . 'application/library/Proxies');
-		$proxiesClassLoader->register();
-		
-		
-		$config = new Doctrine\ORM\Configuration();
-		
-		$driverImpl = $config->newDefaultAnnotationDriver(array(ROOT . 'application/library/Models'));
-		$config->setMetadataDriverImpl($driverImpl);
-		
-		$config->setProxyDir(ROOT . 'application/library/Proxies');
-		$config->setProxyNamespace('Proxies');
+	public function initDoctrine() {	
+		require_once '../bin/doctrine-config.php';
 		
 		$connectionOptions = array(
-		   'driver'   => 'pdo_mysql',
-		   'dbname'   => 'doctrine2_test',
-		   'host'     => 'localhost',
-		   'user'     => 'root',
-		   'password' => '',
+		   'driver'   		=> $this->config['db']['default']['driver'],
+		   'unix_socket' 	=> $this->config['db']['default']['socket'],
+		   'dbname'   		=> $this->config['db']['default']['db'],
+		   'host'     		=> $this->config['db']['default']['host'],
+		   'user'     		=> $this->config['db']['default']['user'],
+		   'password' 		=> $this->config['db']['default']['passwd'],
 		);
 		
 		$em = Doctrine\ORM\EntityManager::create($connectionOptions, $config);
+		
+		return $em;
 	}
 	
 	
 	public function initMailer() {
-		$mail = new PHPMailer();
+		$mail = new PHPMailer(true);
+		$mail->setFrom('vistahr@googlemail.com');
 		return $mail;
 	}
 	
 	
 }
+
+
+
+
+
+
+
+
+
