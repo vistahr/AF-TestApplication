@@ -15,25 +15,17 @@ class Application extends Anemo\Application {
 		
 		// Groups
 		$guest 	= $acl->addSubject(new \Anemo\ACL\Subject('guest'));
-		$mod   	= $acl->addSubject(new \Anemo\ACL\Subject('moderator')	, array($guest));
-		$mod2	= $acl->addSubject(new \Anemo\ACL\Subject('moderator2')	, array($mod));	
-		$admin  = $acl->addSubject(new \Anemo\ACL\Subject('admin') 		, array($mod, $mod2));
-		
-		// User
-		$acl->addSubject(new \Anemo\ACL\Subject('vince'), array($admin));
+		$user   = $acl->addSubject(new \Anemo\ACL\Subject('user')	, array($guest));
+		$admin  = $acl->addSubject(new \Anemo\ACL\Subject('admin') 	, array($user));
 		
 		// Resourcen
 		$backend = $acl->addResource(new \Anemo\ACL\Resource('backend'));
-		$acl->addResource(new \Anemo\ACL\Resource('search'), array($backend));
 		
 		// ACL
-		$acl->allow($mod, 'backend', array('view','edit','blubb'));
-		$acl->deny($mod, 'backend', array('view'));
-		
+		$acl->allow($admin, 'backend', array('view','edit','delete'));
 		
 		$ID = \Anemo\ID::getInstance();
 		$ID->setDefaultSubject($guest);
-		
 		
 		return $acl;
 	}

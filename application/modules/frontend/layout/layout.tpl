@@ -12,8 +12,20 @@
 	
 	<body>
 		<div style="margin:50px;">
+			{if $layout->getID()->isLogged() neq true}
+				<a href="{$layout->baseUrl('account/register')}">register</a>
+				<a href="{$layout->baseUrl('account/login')}">login</a>
+				<a href="{$layout->baseUrl('account/retrieve-password')}">retrieve password</a>
+			{else}
+				<a href="{$layout->baseUrl('account/data')}">data</a>
+				<a href="{$layout->baseUrl('account/logout')}">logout</a>
+			{/if}
+		</div>
+		
+		<div style="margin:50px;">
 			{$layout->getContent()}
 		</div>
+		
 	</body>
 
 </html>

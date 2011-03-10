@@ -25,8 +25,12 @@ Frontend\Customers:
     activation_code:
       type: string
       length: 32
+      nullable: true
     status:
       type: integer
+    subject:
+      type: string
+      length: 30
     created_at:
       type: datetime
       nullable: false

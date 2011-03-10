@@ -197,4 +197,28 @@ class Customers
     {
         return $this->status;
     }
+    /**
+     * @var string $subject
+     */
+    private $subject;
+
+    /**
+     * Set subject
+     *
+     * @param string $subject
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return string $subject
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
 }

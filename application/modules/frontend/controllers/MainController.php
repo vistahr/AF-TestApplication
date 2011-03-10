@@ -89,7 +89,11 @@ class MainController extends \Anemo\Controller
 		}
 	}
 	
-
+	
+	
+	public function uploadAction() {
+		
+	}
 	
 	
 }
